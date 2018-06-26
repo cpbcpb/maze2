@@ -31,11 +31,11 @@ function Walls(){
 }
 
 Walls.prototype.drawWalls = function() {
-    for (i = 0; i < this.matrix.length; i++) {
-      for (j = 0; j < this.matrix.length; j++) {
+    for (j = 0; j < this.matrix.length; j++) {
+      for (i = 0; i < this.matrix.length; i++) {
         if (this.matrix[i][j] == 1) {
-          this.x = i * 50;
-          this.y = j * 50;
+          this.x = j * 50;
+          this.y = i * 50;
           this.width = 50;
           this.height = 50;
           ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -71,11 +71,11 @@ Player.prototype.drawPlayer = function (){
 }
 Player.prototype.canIMove = function(futurex, futurey) {
     var canmove = true;
-    for (i = 0; i < myWalls.matrix.length; i++) {
-        for (j = 0; j < myWalls.matrix.length; j++) {
+    for (j = 0; j < myWalls.matrix.length; j++) {
+        for (i = 0; i < myWalls.matrix.length; i++) {
             if (myWalls.matrix[i][j] == 1) {
-                myWalls.x = i*50;
-                myWalls.y = j*50;
+                myWalls.x = j*50;
+                myWalls.y = i*50;
                 myWalls.width = 50;
                 myWalls.height = 50;
             }
