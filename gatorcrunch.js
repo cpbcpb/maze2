@@ -1,44 +1,48 @@
-//gets canvas from the html
 var myCanvas = document.getElementById('the-canvas');
 var ctx = myCanvas.getContext('2d');
-//creates global variables
 var currentGame;
 var playerImage;
 var tracksImage;
 var imgData = [];
-// constructor function game how do i put player in here?
+
 function Game(){
-        this.walls={}
-        this.timeRemaining={}
-        console.log("This game exists")
+    this.player ={};
+    this.wall = {}
+    console.log("This game exists");
+}
+
+function Walls(){
+    this.x=0;
+    this.y=0;
+    this.width=0;
+    this.height=0;
+    this.matrix = [
+        [ 1, 9, 1, 1, 1, 1, 1, 1, 1, 1 ],
+        [ 1, 0, 0, 0, 1, 1, 0, 0, 0, 1 ],
+        [ 1, 1, 1, 0, 0, 1, 0, 1, 0, 1 ],
+        [ 1, 1, 1, 1, 0, 0, 0, 1, 0, 1 ],
+        [ 1, 0, 0, 0, 1, 1, 1, 1, 0, 1 ],
+        [ 1, 0, 1, 0, 0, 0, 0, 0, 0, 1 ],
+        [ 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 ],
+        [ 1, 0, 1, 0, 0, 1, 0, 1, 1, 1 ],
+        [ 1, 0, 0, 0, 1, 1, 0, 0, 0, 1 ],
+        [ 1, 8, 1, 1, 1, 1, 1, 1, 1, 1 ]
+        ];
+}
+
+Walls.prototype.drawWalls = function() {
+    for (i = 0; i < this.matrix.length; i++) {
+      for (j = 0; j < this.matrix.length; j++) {
+        if (this.matrix[i][j] == 1) {
+          this.x = i * 50;
+          this.y = j * 50;
+          this.width = 50;
+          this.height = 50;
+          ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+      }
     }
-    //collision detector
-    //array of walls
-    //timer
-
-////tried making maze an image drawn on the canvas...will need to do
-////this if multiple levels but for now, maze is background img of canvas in css
-//// maze images generated using http://hereandabove.com/maze/mazeorig.form.html
-//////constructor function player
-//// function Walls(){
-//// maze.src="/images/maze1hereandabove.gif";
-
-//// }
-////Walls.prototype.drawMaze=function(){
-////     var maze = new Image ();
-//// }
-
-var Walls = function (){
-
-}
-Walls.prototype.drawWalls = function(){
-ctx.fillRect(50,50,600,4);
-ctx.fillRect(650,50, 4, 600);
-ctx.fillRect(350, 646, 300, 4);
-ctx.fillRect(50, 646, 250, 4);
-ctx.fillRect(50, 646, 250, 4);
-}
-    
+  }
 
 function Player(){
     //img (array of position sprites)
@@ -53,18 +57,51 @@ function Player(){
     this.tracks='images/trackscpb.png';
     this.movesLeft=1000;
     this.speed=3;
-console.log("This player exists")
-}40
+    console.log("This player exists")
+}
+
 Player.prototype.drawPlayer = function (){
-    that=this;
+    that = this;
     playerImage = new Image();
+    this.matrix = currentGame.matrix;
     playerImage.src = that.img;
-    playerImage.onload=function(){
+    playerImage.onload = function(){
     ctx.drawImage(playerImage, that.x, that.y, that.width, that.height)
     }
-    playerImage.crossOrigin= "Anonymous";
-    console.log("trying to draw player")
 }
+Player.prototype.canIMove = function(futurex, futurey) {
+    var canmove = true;
+    for (i = 0; i < myWalls.matrix.length; i++) {
+        for (j = 0; j < myWalls.matrix.length; j++) {
+            if (myWalls.matrix[i][j] == 1) {
+                myWalls.x = i*50;
+                myWalls.y = j*50;
+                myWalls.width = 50;
+                myWalls.height = 50;
+            }
+            if ( 
+                futurex + this.width >= myWalls.x &&
+                futurex <= myWalls.x + myWalls.width &&
+                futurey + this.height >= myWalls.y &&
+                futurey <= myWalls.y + myWalls.height
+            ) {
+                canmove = false;
+            } else if (
+                futurex + this.width >= 700 ||
+                futurex <= 0 ||
+                futurey + this.height >= 700 ||
+                futurey <= 0
+            ) {
+                canmove = false;
+            }
+        }
+    }
+    return canmove;
+}
+
+// Player.prototype.canIMove (){
+
+// }
 ////trying to create path behind player...
 // Player.prototype.drawTracks = function () {
 //     that=this;
@@ -77,24 +114,31 @@ Player.prototype.drawPlayer = function (){
 // }
 Player.prototype.move = function(whichKey){
 ////erases old player location
-ctx.clearRect(this.x, this.y, this.width, this.height);
-//sets new location based on key pressed
-switch(whichKey){
-case 'ArrowLeft':
-this.x -=this.speed;
-break;
-case 'ArrowRight':
-this.x +=this.speed;
-break;
-case 'ArrowUp':
-this.y -=this.speed;
-break;
-case 'ArrowDown':
-this.y +=this.speed;
-}
+    ctx.clearRect(this.x, this.y, this.width, this.height);
+    switch(whichKey){
+        case 'ArrowLeft':
+            if (this.canIMove(this.x-this.speed, this.y)){
+                this.x -=this.speed;
+            }
+            break;
+        case 'ArrowRight':
+            if(this.canIMove(this.x+this.speed, this.y)){
+                this.x +=this.speed;
+            }
+            break;
+        case 'ArrowUp':
+            if(this.canIMove(this.x, this.y-this.speed)){
+            this.y -=this.speed;
+            }
+            break;
+        case 'ArrowDown':
+            if(this.canIMove(this.x, this.y+this.speed)){
+            this.y +=this.speed;
+        }
+    }
 //draws image at new location
-ctx.drawImage(playerImage, this.x, this.y, this.width, this.height);
-}
+    ctx.drawImage(playerImage, this.x, this.y, this.width, this.height);
+};
 // Player.prototype.checkCollision=function(futurex, futurey){
 // if
     // (futurex + this.width >=currentGame.)
@@ -106,13 +150,13 @@ ctx.drawImage(playerImage, this.x, this.y, this.width, this.height);
         // var imgData = ctx.getImageData(this.x, this.y, this.width, this.height).data;
         //if pixel is back don't move.  
 // }
-console.log(ctx.getImageData(this.x, this.y, 100, 100));
-Player.prototype.collisionCheck=function(){
-    imgData = ctx.getImageData(this.x, this.y, 100, 100);
-        console.log(imgData);
-        // imgData.setAttribute('crossOrigin', '');
-        // imgData.crossOrigin= "Anonymous";
-}
+// console.log(ctx.getImageData(this.x, this.y, 100, 100));
+// Player.prototype.collisionCheck=function(){
+//     imgData = ctx.getImageData(this.x, this.y, 100, 100);
+//         console.log(imgData);
+//         // imgData.setAttribute('crossOrigin', '');
+//         // imgData.crossOrigin= "Anonymous";
+// }
 
 function PowerUps(){
     //array of food imgs?
@@ -127,15 +171,22 @@ function PowerUps(){
 document.getElementById("start-button").onclick = function (){
 currentGame = new Game();
 myPlayer = new Player ();
-myPlayer.drawPlayer();
 myWalls = new Walls();
-myWalls.drawWalls();
+currentGame.player = myPlayer;
+currentGame.walls = myWalls;
+currentGame.player.drawPlayer();
+currentGame.walls.drawWalls();
 }
 
 document.onkeydown=function(event){
-    if (event.key === 'ArrowLeft'|| event.key ==='ArrowRight'|| event.key ==='ArrowUp'|| event.key ==='ArrowDown'){
+    if (
+        event.key === 'ArrowLeft'|| 
+        event.key === 'ArrowRight'|| 
+        event.key === 'ArrowUp'|| 
+        event.key === 'ArrowDown'
+    ) {
         event.preventDefault();
         myPlayer.move(event.key);
     }
     
-}
+};
