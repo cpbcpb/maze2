@@ -42,7 +42,7 @@ function Game() {
         if(
           myPlayer.y + myPlayer.height >= myPrize.y &&
           myPlayer.y <= myPrize.y + myPrize.height){
-            alert('You won!  Trolly loves his treasure!')
+            alert('You won!  Orcie loves her treasure!')
             return true;
           }
         
