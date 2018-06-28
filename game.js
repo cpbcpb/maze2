@@ -88,6 +88,7 @@ document.getElementById("start-button").onclick = function() {
       event.preventDefault();
        currentGame.player.move(event.key);
       currentGame.enemy.chasePlayer(event.key);
+      currentGame.walls.drawWalls();
       currentGame.youLose();
       currentGame.youWin();
     }

@@ -15,11 +15,13 @@ function Enemy() {
   this.trackRight=2;
   this.widthFrame = this.spriteWidth/this.cols;
   this.heightFrame = this.spriteHeight/this.rows;
+  //current frame in the spritesheet
   this.curFrame=0;
   this.frameCount=8;
   //not sure when each position has diffferent # frames...
   //so made these variables if i need them
   this.frameCountLeftandRight=8;
+  //up needed this because only 1 frame
   this.upCurFrame = 1;
   this.upFrameArray=[5, 6, 7, 8];
   this.frameCountDown=1;
@@ -36,9 +38,9 @@ function Enemy() {
     this.height = 30;
     this.img = "images/fantasy/wizard.png";
     this.speed = 2;
-    this.headStart=20;
+    this.headStart=40;
     //this is a percent of moves that must be good or you will be caught
-    this.badMoveAllowed=.5
+    this.badMoveAllowed=.95
     //this is moves the enemy has taken already, moves along path of player
     this.enemyMoveCounter =0;
     //is the rounded up integer of enemyMoveCounter*badMoveAllowed
@@ -71,10 +73,12 @@ function Enemy() {
   //   };
   // };
   Enemy.prototype.chasePlayer = function(whichKey) {
-    if (myPlayer.xArray.length===myEnemy.headStart){
-      alert("The fearsome wizzard Radagast the Brown is after you!")
+    if (myPlayer.moveCounter===myEnemy.headStart){
+      ctx.clearRect(myEnemy.x-2, myEnemy.y-2, myEnemy.width+5, myEnemy.height+8);
+      myPlayer.moveCounter +=1;
+      alert("The fearsome wizard Radagast the Brown is after you!")
     }
-    if(myPlayer.xArray.length>myEnemy.headStart){
+    if(myPlayer.moveCounter >= myEnemy.headStart){
       if (whichKey === 'ArrowLeft' || 'ArrowRight' || 'ArrowUp' || 'ArrowDown'){
       // ////erases old enemy location
       // ctx.clearRect(myEnemy.x, myEnemy.y, myEnemy.width, myEnemy.height);
@@ -90,7 +94,7 @@ function Enemy() {
   }
   }
   Enemy.prototype.spriteUpdateFrame=function(){
-    ctx.clearRect(myEnemy.x, myEnemy.y, myEnemy.width, myEnemy.height);
+    ctx.clearRect(myEnemy.x-2, myEnemy.y-2, myEnemy.width+5, myEnemy.height+8);
     //if want automatic motion, could put several if (direction) statement here that changes x or y
     //get this thing to turn!
     //left is working
@@ -109,8 +113,13 @@ function Enemy() {
     }
     //up 
     if(myEnemy.direction === 0){
+
       myEnemy.upCurFrame = ++ myEnemy.upCurFrame % myEnemy.frameCountUp;
-      myEnemy.curFrame= myEnemy.upFrameArray[myEnemy.upCurFrame];
+      //got rid of this because guy was flashing on up because of fetching array this way
+      // myEnemy.curFrame= myEnemy.upFrameArray[myEnemy.upCurFrame];
+      //below is the replacement, having the array nearby got rid of the flashing
+      var upArray=[4,5,6,7]
+      myEnemy.curFrame= upArray[myEnemy.upCurFrame];
       myEnemy.srcX = myEnemy.curFrame * myEnemy.widthFrame;
       myEnemy.srcY=myEnemy.trackUp*myEnemy.heightFrame;
     }
