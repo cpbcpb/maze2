@@ -1,31 +1,66 @@
+//i think to get the direction to work i need a function
+//where a button press triggers lookleft variables truefalse 
+//and then sets the srcY to the right level in the sprite sheet, should be
+//about spritesheetheight/spritesheetrows*(desiredrow-1)
+
+
+//first thing however is to tie my sprite to my player thingys and make it all work
 function Player() {
-    //img (array of position sprites)
-    //counter or lives?
-    //speed?
-    this.x = 50;
-    this.y = 720;
-    // number of array entries is how far a head start player gets, 
-    // must be the same in x and y
+    // x and y coordinates of the canvas to get a single frame
+    this.spriteWidth = 576;
+    this.spriteHeight=256;
+    this.rows=4;
+    this.cols=9;
+    this.trackUp=0;
+    this.trackLeft=1;
+    this.trackDown=2;
+    this.trackRight=3;
+    this.widthFrame = this.spriteWidth/this.cols;
+    this.heightFrame = this.spriteHeight/this.rows;
+    this.width=30,
+    this.height=30;
+    this.curFrame=0;
+    this.frameCount=9;
+    this.x = 100;
+    this.y = 100;
+    this.srcX=0;
+    this.srcY=0;
+    this.up=false;
+    this.down=false;
+    this.left=true;
+    this.right=false;
+    this.speed = 4;
     this.xArray = [ ];
     this.yArray = [ ];
-    this.width = 23;
-    this.height = 23;
-    this.img = "images/animals/lilgator.png";
+    this.directionArray = [];
+    this.img = "./images/fantasy/orc_piratess.png";
     //https://gamedevelopment.tutsplus.com/tutorials/an-introduction-to-spritesheet-animation--gamedev-13099
-    this.tracks = "images/trackscpb.png";
     this.moveCounter = 0;
-    this.speed = 5;
-    console.log("This player exists");
-  }
-  
-  Player.prototype.drawPlayer = function() {
-    this1 = this;
+    
+
+
+    //row 1 backside // row 2 facing left //row 3 frontside//row 4 facing right//
+
+
+
+
+    //however my 9th one is fallen down so maybe not...
+
+    }
+    // Player.prototype.drawPlayer = function() {
+    //   this1 = this;
+    //   playerImage = new Image();
+    //   playerImage.src = this1.img;
+    //   playerImage.onload = function() {
+    //     ctx.drawImage(playerImage, this1.x, this1.y, this1.width, this1.height);
+    //   };
+    // };
+    
+  Player.prototype.createPlayerImage=function(){
     playerImage = new Image();
-    playerImage.src = this1.img;
-    playerImage.onload = function() {
-      ctx.drawImage(playerImage, this1.x, this1.y, this1.width, this1.height);
-    };
-  };
+    playerImage.src = "./images/fantasy/orc_piratess.png";
+  }
+
   Player.prototype.canIMove = function(futurex, futurey) {
     var canmove = true;
     for (j = 0; j < myWalls.matrix.length; j++) {
@@ -58,43 +93,92 @@ function Player() {
 
   Player.prototype.move = function(whichKey) {
     ////erases old player location
-    ctx.clearRect(this.x, this.y, this.width, this.height);
+    this.moveCounter+=1;
+    // ctx.clearRect(this.x, this.y, this.width, this.height);
     switch (whichKey) {
       case "ArrowLeft":
-          this.moveCounter +=1;
+          myPlayer.left=true;
+         myPlayer.right=false;
+         myPlayer.up=false;
+         myPlayer.down=false;
         if (this.canIMove(this.x - this.speed, this.y)) {
           this.yArray.push(this.y)
           this.xArray.push(this.x)
+          this.directionArray.push(this.trackLeft);
           this.x -= this.speed;
         }
         break;
       case "ArrowRight":
-         this.moveCounter +=1;
+         myPlayer.left=false;
+         myPlayer.right=true;
+         myPlayer.up=false;
+         myPlayer.down=false;
       if (this.canIMove(this.x + this.speed, this.y)) {
           this.x += this.speed;
           this.yArray.push(this.y)
           this.xArray.push(this.x)
+          this.directionArray.push(this.trackRight);
   
         }
         break;
       case "ArrowUp":
-          this.moveCounter +=1;
+          myPlayer.left=false;
+          myPlayer.right=false;
+          myPlayer.up=true;
+          myPlayer.down=false;
         if (this.canIMove(this.x, this.y - this.speed)) {
           this.y -= this.speed;
           this.yArray.push(this.y)
           this.xArray.push(this.x)
-          this.moveCounter +=1;
+          this.directionArray.push(this.trackUp);
         }
         break;
       case "ArrowDown":
-          this.moveCounter +=1;
+          myPlayer.left=false;
+          myPlayer.right=false;
+          myPlayer.up=false;
+          myPlayer.down=true;
         if (this.canIMove(this.x, this.y + this.speed)) {
           this.y += this.speed;
           this.yArray.push(this.y)
           this.xArray.push(this.x)
-          this.moveCounter +=1;
+          this.directionArray.push(this.trackDown);
         }
     }
-    //draws image at new location
-    ctx.drawImage(playerImage, this.x, this.y, this.width, this.height);
+    // //draws image at new location
+    // clearInterval();
+    myPlayer.drawPlayer();
   };
+  
+  Player.prototype.spriteUpdateFrame=function(){
+    //updating the frame index
+    myPlayer.curFrame= ++ myPlayer.curFrame % myPlayer.frameCount;
+    //Calculating the x coordinate for spritesheet
+    myPlayer.srcX = myPlayer.curFrame * myPlayer.widthFrame;
+    //lets clear old sprite image
+    ctx.clearRect(myPlayer.x,myPlayer.y,myPlayer.width, myPlayer.height+5);
+    //if want automatic motion, could put several if (direction) statement here that changes x or y
+    //get this thing to turn!
+    if(myPlayer.left && myPlayer.x>0){
+      myPlayer.srcY=myPlayer.trackLeft*myPlayer.heightFrame;
+    }
+    if(myPlayer.right && myPlayer.x<canvasWidth-myPlayer.width){
+      myPlayer.srcY=myPlayer.trackRight*myPlayer.heightFrame;
+    }
+    if(myPlayer.up){
+      myPlayer.srcY=myPlayer.trackUp*myPlayer.heightFrame;
+    }
+    if(myPlayer.down && myPlayer.y<canvasHeight-myPlayer.height){
+      myPlayer.srcY=myPlayer.trackDown*myPlayer.heightFrame;
+    }
+  }
+  Player.prototype.draw = function(){
+    myPlayer.spriteUpdateFrame();
+    ctx.drawImage(playerImage, myPlayer.srcX, myPlayer.srcY, myPlayer.widthFrame, myPlayer.heightFrame, myPlayer.x, myPlayer.y, myPlayer.width, myPlayer.height)
+}
+  Player.prototype.drawPlayer=function(){
+    clearInterval(currentGame.intervalThing);
+    currentGame.intervalThing = setInterval(function(){
+      myPlayer.draw();
+    }, 80);
+  }

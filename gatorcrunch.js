@@ -1,4 +1,15 @@
 //To do:
+//very difficult - make sprite thing work
+// moderate - add coins on path
+// easy but time consuming - make a better looking maze
+// easy but only part of thingy - make my images be of the right things
+// moderate: make game page look good
+//
+//
+//
+//
+
+
 //make sprite thing work.
 //maybe make a head sprite and a body sprite and have the body's motion just be 1 step behind
 //the head again using the same array the enemy uses to follow...cool beans  then

@@ -4,7 +4,10 @@ var currentGame;
 var playerImage;
 var tracksImage;
 var enemyImage;
-var imgData = [];
+var canvasWidth=1000;
+var canvasHeight=750;
+var intervalThing;
+var intervalThingEnemy;
 
 function Game() {
     this.player = {};
@@ -24,8 +27,8 @@ function Game() {
           if(
             myPlayer.y + myPlayer.height >= myEnemy.y &&
             myPlayer.y <= myEnemy.y + myEnemy.height){
-              alert('The shark ate you.  You lost! Next time avoid hitting the walls.')
-      
+              alert('The rabbits of Radagast the Brown enjoyed your tasty corpse.')
+              return true;
             }
           
           }
@@ -40,7 +43,7 @@ function Game() {
           myPlayer.y + myPlayer.height >= myPrize.y &&
           myPlayer.y <= myPrize.y + myPrize.height){
             alert('You won!  Trolly loves his treasure!')
-    
+            return true;
           }
         
         }
@@ -60,14 +63,22 @@ document.getElementById("start-button").onclick = function() {
     currentGame.walls = myWalls;
     currentGame.enemy = myEnemy;
     currentGame.prize = myPrize;
-    currentGame.player.drawPlayer();
     currentGame.walls.drawWalls();
+    currentGame.player.createPlayerImage();
+    currentGame.enemy.createEnemyImage();
+    currentGame.player.drawPlayer();
     currentGame.enemy.drawEnemy();
     currentGame.prize.drawPrize();
+ 
+
   };
   
+
+  var intervalThing;
+  var intervalThingEnemy;
+  var intervalThingGame;
   document.onkeydown = function(event) {
-  
+    clearInterval(intervalThingGame);
     if (
       event.key === "ArrowLeft" ||
       event.key === "ArrowRight" ||
@@ -75,11 +86,24 @@ document.getElementById("start-button").onclick = function() {
       event.key === "ArrowDown"
     ) {
       event.preventDefault();
-      currentGame.player.move(event.key);
+       currentGame.player.move(event.key);
+      currentGame.enemy.chasePlayer(event.key);
       currentGame.youLose();
       currentGame.youWin();
-      currentGame.enemy.chasePlayer(event.key);
-     
     }
   };
-  
+
+  // document.onkeydown = function(event) {
+  //   clearInterval(blah); 
+  //   if (event.key === 'ArrowLeft'|| event.key ==='ArrowRight'|| event.key ==='ArrowUp'|| event.key ==='ArrowDown'){
+  //     event.preventDefault();
+
+  //      blah = setInterval(function(){
+  //       theCar.move(event.key, 2);
+  //     }, 10);
+  //   }
+  // }
+
+  // document.onkeyup = function(){
+  //   clearInterval(intervalThingGame);
+  // }
