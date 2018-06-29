@@ -118,9 +118,9 @@ else if (pause === true){
         currentGame.enemy.chasePlayer(event.key);
         currentGame.player.move(event.key);
         currentGame.youLose();}
-          // if(loser>=1){
-          //   clearInterval(intervalThingGame)
-          // }
+          if(loser>=1){
+            clearInterval(intervalThingGame)
+          }
 
       }, 11)
     
