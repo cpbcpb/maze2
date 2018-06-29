@@ -1,6 +1,11 @@
 #the-canvas{
-    background-color: black;
+    background-color:black;
 } 
 .container{
     display:flex;
+    flex-direction: row;
+}
+
+.body {
+    background-color: rgb(136, 136, 254);
 }
