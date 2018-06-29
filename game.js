@@ -29,7 +29,7 @@ function Game() {
             myPlayer.y + myPlayer.height >= myEnemy.y &&
             myPlayer.y <= myEnemy.y + myEnemy.height){
              if (loser===0){
-               alert('You lose!');
+               alert("Radagast the Brown has caught you! You lose.");
                loser = loser +1;
              }
             }
