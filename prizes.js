@@ -1,8 +1,8 @@
 function Prize(){
-    this.x=700;
-    this.y=100;
-    this.width=23;
-    this.height=23;
+    this.x=1115;
+    this.y=580;
+    this.width=80;
+    this.height=80;
     this.img="images/fantasy/chest dark.png"
   }
   Prize.prototype.drawPrize = function() {

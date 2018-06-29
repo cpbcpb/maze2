@@ -17,19 +17,19 @@ function Player() {
     this.trackRight=3;
     this.widthFrame = this.spriteWidth/this.cols;
     this.heightFrame = this.spriteHeight/this.rows;
-    this.width=30,
-    this.height=30;
+    this.width=44,
+    this.height=44;
     this.curFrame=0;
     this.frameCount=9;
-    this.x = 100;
-    this.y = 100;
+    this.x = 20;
+    this.y = 25;
     this.srcX=0;
     this.srcY=0;
     this.up=false;
     this.down=false;
-    this.left=true;
-    this.right=false;
-    this.speed = 4;
+    this.left=false;
+    this.right=true;
+    this.speed = 1;
     this.xArray = [ ];
     this.yArray = [ ];
     this.directionArray = [];
@@ -63,8 +63,8 @@ function Player() {
 
   Player.prototype.canIMove = function(futurex, futurey) {
     var canmove = true;
-    for (j = 0; j < myWalls.matrix.length; j++) {
-      for (i = 0; i < myWalls.matrix.length; i++) {
+    for (j = 0; j < myWalls.matrixWidth; j++) {
+      for (i = 0; i < myWalls.matrixHeight; i++) {
         if (myWalls.matrix[i][j] == 1) {
           myWalls.x = j * 23;
           myWalls.y = i * 23;
@@ -72,16 +72,19 @@ function Player() {
           myWalls.height = 23;
         }
         if (
-          futurex + this.width >= myWalls.x &&
-          futurex <= myWalls.x + myWalls.width &&
+          futurex + this.width*.8 >= myWalls.x &&
+          //my player is wider with empty space hence the 0.8 and 0.2 adjustment so it will look right.  made it a factor of the width
+          //so if i change the player siZe the adjustment should still work
+          futurex + this.width*.2 <= myWalls.x + myWalls.width &&
+          //my player also has some empty space on top of the sprite so same adjustment issue
           futurey + this.height >= myWalls.y &&
-          futurey <= myWalls.y + myWalls.height
+          futurey + this.height*.1 <= myWalls.y + myWalls.height
         ) {
           canmove = false;
         } else if (
-          futurex + this.width >= 800 ||
+          futurex + this.width >= 1200 ||
           futurex <= 0 ||
-          futurey + this.height >= 800 ||
+          futurey + this.height >= 750 ||
           futurey <= 0
         ) {
           canmove = false;
@@ -156,7 +159,7 @@ function Player() {
     //Calculating the x coordinate for spritesheet
     myPlayer.srcX = myPlayer.curFrame * myPlayer.widthFrame;
     //lets clear old sprite image
-    ctx.clearRect(myPlayer.x,myPlayer.y,myPlayer.width, myPlayer.height+5);
+    ctx.clearRect(myPlayer.x, myPlayer.y-10, myPlayer.width, myPlayer.height+20);
     //if want automatic motion, could put several if (direction) statement here that changes x or y
     //get this thing to turn!
     if(myPlayer.left && myPlayer.x>0){
@@ -174,11 +177,12 @@ function Player() {
   }
   Player.prototype.draw = function(){
     myPlayer.spriteUpdateFrame();
+    
     ctx.drawImage(playerImage, myPlayer.srcX, myPlayer.srcY, myPlayer.widthFrame, myPlayer.heightFrame, myPlayer.x, myPlayer.y, myPlayer.width, myPlayer.height)
 }
   Player.prototype.drawPlayer=function(){
     clearInterval(currentGame.intervalThing);
     currentGame.intervalThing = setInterval(function(){
       myPlayer.draw();
-    }, 80);
+    }, 100);
   }

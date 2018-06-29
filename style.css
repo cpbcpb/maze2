@@ -1,6 +1,6 @@
-/* #the-canvas{
-    background-color: rgb(136, 136, 254);
-}  */
+#the-canvas{
+    background-color: black;
+} 
 .container{
     display:flex;
 }

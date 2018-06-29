@@ -1,0 +1,333 @@
+
+<!-- saved from url=(0041)http://lotr.wikia.com/wiki/Fangorn_Forest -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>var inDapIF=true;</script>
+</head><body marginwidth="0" marginheight="0"><script data-wrapper-id="ads-configuration-TOP_LEADERBOARD">
+	window.isMoatOptOut = false;
+</script>
+<script>var viewReq = new Array();function vu(u) {var i=new Image();i.src=u.replace("&amp;","&");viewReq.push(i);}</script><script>vu("https://securepubads.g.doubleclick.net/pcs/view?xai\u003dAKAOjssvmEQU1uIBOh1BWnFjCOHvT91Sxixrb8WF_WMHYdC_gqJFCQG_RrWfGx4VD5IjdvaXrn_X4YBM6nXtX5oBgT5i_5vJ9Xi8wQvRstjNJy9CRNyh3NeoHrB8Oc1mVaRF9hlMDol9oOcTSwfC3pNUQkMCCvl_dqlR6BsGHYUDlx0FZvsoJrWTzmcxZ9Qc5HiQc8Uohj3Xb3DgYxYcnTLRJei_HprcC9cqt2AWrMkWED2ihKt05GSRR65aMnXZW7sH-SJ1Dwu5vhAxRxqW9e6o3MxlNkFgoGTx\u0026sai\u003dAMfl-YQt_65WsIsksxqxjHhrz-cle78WG1NP618Xqs-L33apIVxa0LcQxwfUqfmoy87iF-aCtMlcwFSBejjM0X20y5-4kZ_SEEOY_NmLei30hs1EglCT0CECtStgAj9M\u0026sig\u003dCg0ArKJSzEoIt8PfJNyAEAE\u0026urlfix\u003d1\u0026adurl\u003d")</script><script>
+	if (top && top.window && top.window.ads && top.window.ads.runtime) {
+		top.window.ads.runtime.disableBtf = true;
+		AdEngine_adType = 'forced_success';
+	}
+</script>
+
+<style>
+	body, html {
+		height: 100%;
+		width: 100%;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	#adContainer {
+		cursor: pointer;
+		display: block;
+		height: 100%;
+		position: relative;
+		width: 100%;
+	}
+
+	.noselect {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	#defaultBackground,
+	#resolvedBackground {
+		background-position: center top;
+		background-repeat: no-repeat;
+		background-size: 100% auto;
+		height: 100%;
+		left: 0;
+		opacity: 1;
+		position: absolute;
+		vertical-align: top;
+		top: 0;
+		transform-style: preserve-3d;
+		transform: translateZ(0);
+		transition: opacity 0.5s linear;
+		width: 100%;
+		z-index: 100;
+	}
+
+	#resolvedBackground {
+		background-size: 100% 100%;
+		z-index: 200;
+	}
+
+	.hidden-state {
+		opacity: 0 !important;
+	}
+
+	#videoThumbnail {
+		height: 100%;
+		width: auto;
+	}
+
+	#videoContainer {
+		background: #000;
+		/* hack for Edge to calculate container width correctly */
+		display: -ms-inline-flexbox;
+		height: 92%;
+		position: absolute;
+		right: 23.2%;
+		top: 4%;
+		transform: translateX(50%);
+		z-index: 300;
+	}
+
+	.theme-mobile #videoContainer {
+		background: #000;
+		bottom: 0;
+		height: 100%;
+		right: 0;
+		top: auto;
+		transform: none;
+	}
+
+	.replay-overlay {
+		background-color: rgba(0,0,0,0.3);
+		cursor: pointer;
+		display: none;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+	}
+
+	.replay-icon, .overlay-icon {
+		fill: #fff;
+		height: 28px;
+		left: calc(50% - 14px);
+		position: absolute;
+		top: calc(50% - 14px);
+		width: 28px;
+	}
+</style>
+
+<div id="adContainer" class="noselect">
+	<div id="defaultBackground" style="background-image: url(&quot;https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb3rnklgEQARgBMgid48iR2SOwKQ&quot;);"></div>
+	<div id="resolvedBackground" class="" style="background-image: url(&quot;https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb3rmwpQEQARgBMggJXDBX40sZKw&quot;);"></div>
+</div>
+
+<script>
+	function setBackgroundImage(element, image) {
+		element.style.backgroundImage = 'url(\'' + image + '\')';
+	}
+
+	// Elements
+	var adContainer = document.getElementById('adContainer'),
+		defaultBackground = document.getElementById('defaultBackground'),
+		resolvedBackground = document.getElementById('resolvedBackground'),
+		thumbnail;
+
+	// Global config
+	var globalConfig = {
+		desktop: {
+			aspectRatio: {
+				default: 1600 / 400,
+				resolved: 1600 / 160
+			},
+			background: {
+				default: 'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb3rnklgEQARgBMgid48iR2SOwKQ',
+				resolved: 'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb3rmwpQEQARgBMggJXDBX40sZKw'
+			},
+			video: {
+				thumb: '',
+			},
+			state: {
+				height: {
+					default: 92,
+					resolved: 100
+				},
+				top: {
+					default: 4,
+					resolved: 0
+				}
+			}
+		},
+		mobile: {
+			aspectRatio: {
+				default: 16 / 9,
+				resolved: 3 / 1
+			},
+			background: {
+				default: 'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb3rmIcxABGAEyCPMPH7ik5oRz',
+				resolved: 'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb3rnUFxABGAEyCA3ggaoIzU0X'
+			},
+			video: {
+				thumb: '',
+			},
+			state: {
+				height: {
+					default: 100,
+					resolved: 65
+				},
+				right: {
+					default: 0,
+					resolved: 2.5
+				},
+				bottom: {
+					default: 0,
+					resolved: 7
+				}
+			}
+		}
+	};
+
+	// Creative config
+	var isMobile = ['mercury', 'fandom_mobile'].indexOf('oasis') > -1,
+		config = globalConfig[isMobile ? 'mobile' : 'desktop'],
+		creative = {
+			adType: 'top' === 'top' ? 'bfaa' : 'bfab',
+			adProduct: 'vuap',
+			player: 'porvata',
+			isVideoMegaEnabled: true,
+			config: config,
+			clickThroughURL: 'https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjsusN_PE7P_yLp31B9lfDgHWzf2r4aOq3Zn_SfP4NrRNzqnFzxlAZnmr4kR0lDKItCTZ6fOPiKA5S9Ur12iuCPsNqsKZ47ZY1TdCb0jCddHWpxry5zsx2nvcHlN2F451ULpvsS7xKj7ODXC74QmCSeW0Obmn76USa4W9nWKyRAomr7L1lHGWCeCx6kYSKdW7HtXzJtsH05nLneC0P5HUbjgaNQX1CVR4NAjA5qEpAtAQV3mjQegZZEniKEgI3c06k53Z9YpU0tr5cDgtC_rXneVp&sai=AMfl-YSYrm7l23steqjWwmK-mpNaZ7-4-Y9xBfQqiEmlwG4sn8x1vmWfTtYFpDzlvcB0sMry4u_xDQeqc3m35fjoi7wUNcGZb7Q6MIe4q5AgR6nrQCbFpFg6DTA4cmlo&sig=Cg0ArKJSzACwpF2sJC6bEAE&urlfix=1&adurl=https://ad.doubleclick.net/ddm/trackclk/N4427.2352111WIKIA_ARG_99002/B21258731.222469879;dc_trk_aid=420869050;dc_trk_cid=102372620;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=',
+
+			image1: {
+				element: document.getElementById('defaultBackground'),
+				background: config.background.default
+			},
+			image2: {
+				element: document.getElementById('resolvedBackground'),
+				background: config.background.resolved
+			},
+
+			autoPlay: !('true' === 'false'),
+			aspectRatio: config.aspectRatio.default,
+			resolvedStateAspectRatio: config.aspectRatio.resolved,
+			videoAspectRatio: 16/9,
+			moatTracking: 1,
+			stickyUntilVideoViewed: false,
+			stickyAdditionalTime: undefined,
+			blockOutOfViewportPausing: true,
+			restartOnUnmute: false
+		},
+		videoTriggers = [];
+
+	if (config.background.default) {
+		setBackgroundImage(defaultBackground, config.background.default);
+	}
+
+	if (config.background.resolved) {
+		setBackgroundImage(resolvedBackground, config.background.resolved);
+	}
+
+	if (config.video.thumb) {
+		thumbnail = document.createElement('div');
+		thumbnail.setAttribute('id', 'videoContainer');
+		thumbnail.classList.add('video-element');
+
+		var thumbnailImage = document.createElement('img');
+		thumbnailImage.setAttribute('id', 'videoThumbnail');
+		thumbnailImage.setAttribute('src', config.video.thumb);
+
+		thumbnail.appendChild(thumbnailImage);
+		adContainer.insertBefore(thumbnail, defaultBackground);
+	}
+
+	if (isMobile) {
+		adContainer.classList.add('theme-mobile');
+	}
+
+	[defaultBackground, resolvedBackground].forEach(function (element) {
+		element.addEventListener('click', function () {
+			top.open(creative.clickThroughURL, '_blank');
+		});
+	});
+
+	
+
+	top.loadCustomAd && top.loadCustomAd({
+		type: creative.adType,
+		adProduct: creative.adProduct,
+		player: creative.player,
+		isVideoMegaEnabled: creative.isVideoMegaEnabled,
+
+		isMobile: isMobile,
+		config: config,
+
+		slotName: 'TOP_LEADERBOARD',
+		src: 'gpt',
+		uap: '4697220854',
+		lineItemId: '4697220854',
+		creativeId: '138237081821',
+
+		isSticky: true,
+		backgroundColor: '#000',
+		autoPlay: creative.autoPlay,
+		resolvedStateAutoPlay: creative.autoPlay,
+
+		videoTriggers: videoTriggers,
+		videoPlaceholderElement: thumbnail,
+		splitLayoutVideoPosition: 'right',
+
+		image1: creative.image1,
+		image2: creative.image2,
+		adContainer: adContainer,
+		thumbnail: thumbnail,
+
+		aspectRatio: creative.aspectRatio,
+		resolvedStateAspectRatio: creative.resolvedStateAspectRatio,
+		videoAspectRatio: creative.videoAspectRatio,
+		theme: 'hivi',
+		isDarkTheme: 'light' === 'black' || 'light' === 'dark',
+		stickyUntilVideoViewed: creative.stickyUntilVideoViewed,
+		stickyAdditionalTime: creative.stickyAdditionalTime,
+		blockOutOfViewportPausing: creative.blockOutOfViewportPausing,
+		restartOnUnmute: creative.restartOnUnmute,
+		clickThroughURL: creative.clickThroughURL,
+		fullscreenable: true,
+
+		loadMedrecFromBTF: false,
+		moatTracking: creative.moatTracking
+	});
+</script>
+
+
+<script>
+  var script = document.createElement('script');
+  script.src = '';
+  script.type = 'text/javascript';
+
+  document.body.appendChild(script);
+</script><script src="http://lotr.wikia.com/wiki/Fangorn_Forest" type="text/javascript"></script>
+
+<noscript class="MOAT-wikiadfp866051287149?moatClientLevel1=109172892&amp;moatClientLevel2=2324918098&amp;moatClientLevel3=4697220854&amp;moatClientLevel4=138237081821&amp;moatClientSlicer1=81571452&amp;moatClientSlicer2=178722252"></noscript>
+<script src="./moatad(1).js" type="text/javascript"></script>
+
+<img width="1" height="1" border="0" src="./B21258731.222469879" style="display: none;">
+<img width="1" height="1" border="0" src="http://lotr.wikia.com/wiki/Fangorn_Forest" style="display: none;">
+<img width="1" height="1" border="0" src="http://lotr.wikia.com/wiki/Fangorn_Forest" style="display: none;">
+
+<script type="application/javascript" src="http://lotr.wikia.com/wiki/Fangorn_Forest"></script>
+<noscript><IMG SRC="" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></noscript>
+
+
+
+
+<!-- Last updated: 2018-01-04 14:27 CET -->
+<script src="./f.txt"></script><script type="text/javascript">osdlfm(-1,'','B0aOgx0g2W6zNFIHAnASikoPADwAAAAAQATgByAEJwAIC4AIA4AQBoAYf0ggFCIBhEAE','',3304875760,true,'ud\u003d1\u0026la\u003d0\u0026alp\u003dxai\u0026alh\u003d1471442617\u0026',3,'CAASEuRoRkku8OcqcisdocO9Z3q0Ug','https://pagead2.googlesyndication.com/pcs/activeview?xai\u003dAKAOjstBY1KhSGgqeBLEO7X4z1WViq7lr3IKrL93zMbe7wIW4dokOOgCgIfgg2U2qHwuxZJMfdrF4l38OhVcOUXi3O1d_JGq8Ic9Gfw\u0026sig\u003dCg0ArKJSzKBxPTckkWqcEAE','');</script><script>if (window.top && window.top.postMessage) {window.top.postMessage('{"googMsgType":"adpnt"}','*');}</script><div style="bottom:0;right:0;width:100px;height:100px;background:initial !important;position:absolute !important;max-width:100% !important;max-height:100% !important;pointer-events:none !important;image-rendering:pixelated !important;z-index:2147483647;background-image:url(&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAWBAMAAACrl3iAAAAABlBMVEUAAAD+AciWmZzWAAAAAnRSTlMAApidrBQAAAB4SURBVBjTbZALDsAwCELhBt7/tE0Ef8tc0o6U0qfAf1EFHgVE6uhPipBXnlLpi9Ba+3JDd5a7s2PUkNhrklWxuYE6p1FMks5Kzh+9bHKDn9SQTRcqfT1yQdyk7EM6GMTpciY5M2MjN7dD7fxOcEfv7GnyTpCaDPEAPugFgh9OokcAAAAASUVORK5CYII=&#39;) !important"></div><script data-id="MOAT">
+  var countries = ['UK', 'GB', 'US', 'AU', 'CA', 'DE'],
+    sampling = 0.01, // 0.01 = 1%
+    unsupportedSlots = ['INVISIBLE_SKIN', 'INVISIBLE_HIGH_IMPACT', 'INVISIBLE_HIGH_IMPACT_2'],
+    script;
+
+  if (!window.isMoatOptOut && Math.random() <= sampling && countries.indexOf('US'.toUpperCase()) !== -1 && unsupportedSlots.indexOf('TOP_LEADERBOARD'.toUpperCase()) === -1) {
+    script = document.createElement('script');
+    script.src = 'https://z.moatads.com/wikiadfp866051287149/moatad.js#moatClientLevel1=109172892&moatClientLevel2=2324918098&moatClientLevel3=4697220854&moatClientLevel4=138237081821&moatClientSlicer1=81571452&moatClientSlicer2=178722252';
+    script.async = true;
+
+    document.body && document.body.appendChild(script);
+  }
+</script>
+
+</body></html>

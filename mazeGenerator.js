@@ -1,18 +1,22 @@
 
 var Maze = function (){
-  this.height=100;
-  this.width=100;
+  this.height=32;
+  this.width=48;
   this.mazeMatrix = []
 }
 //makes a matrix full of 1s of give height and width
+
 Maze.prototype.createMatrix = function(){
   for (var y = 0; y < this.height; y++){
     this.mazeMatrix [ y ] = [];
     for (var x = 0; x < this.width; x++){
-      this.mazeMatrix [ y ][ x ] = 2;
+      this.mazeMatrix [ y ][ x ] = 1;
     }
   } return this.mazeMatrix
 }
+// myMaze = new Maze;
+// // myMaze.createMatrix();
+// console.log(myMaze.mazeMatrix);
 //removes the outermost ones and replaces with zeros
 Maze.prototype.clearEdges = function (){
   var clearx = 0;
@@ -108,11 +112,11 @@ Maze.prototype.clearPath = function (){
 //need to clear this location and those back on the path from //it 
 //maybe a switch statement for each direction after the random
 //number generator chooses a direction would work
-myMaze = new Maze
-myMaze.createMatrix()
-myMaze.clearEdges()
-myMaze.clearPath()
-console.log(myMaze.mazeMatrix)
+// myMaze = new Maze
+// myMaze.createMatrix()
+// myMaze.clearEdges()
+// myMaze.clearPath()
+// console.log(myMaze.mazeMatrix)
 
 // console.log( matrix);
 // foo,foo,foo,foo,foo,foo

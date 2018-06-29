@@ -32,15 +32,15 @@ function Enemy() {
   // up 0 left 1 down 2 right 3
   this.direction=1;
  // *******
-    this.x = 600;
-    this.y = 720;
-    this.width = 30;
-    this.height = 30;
+    this.x = 1180;
+    this.y = 10;
+    this.width = 44;
+    this.height = 44;
     this.img = "images/fantasy/wizard.png";
     this.speed = 2;
-    this.headStart=40;
+    this.headStart=400;
     //this is a percent of moves that must be good or you will be caught
-    this.badMoveAllowed=.95
+    this.badMoveAllowed=.9
     //this is moves the enemy has taken already, moves along path of player
     this.enemyMoveCounter =0;
     //is the rounded up integer of enemyMoveCounter*badMoveAllowed
@@ -54,6 +54,7 @@ function Enemy() {
 
     Enemy.prototype.draw = function(){
       myEnemy.spriteUpdateFrame();
+      
       ctx.drawImage(enemyImage, myEnemy.srcX, myEnemy.srcY, myEnemy.widthFrame, myEnemy.heightFrame, myEnemy.x, myEnemy.y, myEnemy.width, myEnemy.height);
     }
 
@@ -61,7 +62,7 @@ function Enemy() {
       clearInterval(currentGame.intervalThingEnemy);
       currentGame.intervalThingEnemy = setInterval(function(){
         myEnemy.draw();
-      }, 80);
+      }, 100);
     }
 
 
@@ -74,7 +75,7 @@ function Enemy() {
   // };
   Enemy.prototype.chasePlayer = function(whichKey) {
     if (myPlayer.moveCounter===myEnemy.headStart){
-      ctx.clearRect(myEnemy.x-2, myEnemy.y-2, myEnemy.width+5, myEnemy.height+8);
+      ctx.clearRect(myEnemy.x, myEnemy.y, myEnemy.width, myEnemy.height);
       myPlayer.moveCounter +=1;
       alert("The fearsome wizard Radagast the Brown is after you!")
     }
@@ -94,7 +95,7 @@ function Enemy() {
   }
   }
   Enemy.prototype.spriteUpdateFrame=function(){
-    ctx.clearRect(myEnemy.x-2, myEnemy.y-2, myEnemy.width+5, myEnemy.height+8);
+    ctx.clearRect(myEnemy.x-5, myEnemy.y-10, myEnemy.width+10, myEnemy.height+20);
     //if want automatic motion, could put several if (direction) statement here that changes x or y
     //get this thing to turn!
     //left is working
@@ -130,6 +131,7 @@ function Enemy() {
       myEnemy.srcY=0 * myEnemy.heightFrame;
     }
     myPlayer.srcX = myPlayer.curFrame * myPlayer.widthFrame;
+    
   }
 
     Enemy.prototype.canEnemyMove = function(futurex, futurey) {
