@@ -115,13 +115,12 @@ else if (pause === true){
       }, 5)
       intervalThingGame = setInterval(function(){
         if (pause===false){
-        currentGame.enemy.chasePlayer(event.key);}
+        currentGame.enemy.chasePlayer(event.key);
         currentGame.player.move(event.key);
-        currentGame.youLose();
-          if(loser>=1){
-            clearInterval(intervalThingGame)
-            return "Click Start Game to try Again!"
-          }
+        currentGame.youLose();}
+          // if(loser>=1){
+          //   clearInterval(intervalThingGame)
+          // }
 
       }, 11)
     
