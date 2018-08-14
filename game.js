@@ -29,7 +29,7 @@ function Game() {
             myPlayer.y + myPlayer.height >= myEnemy.y &&
             myPlayer.y <= myEnemy.y + myEnemy.height){
              if (loser===0){
-               alert("You have been captured by Radagast the Brown! Will he feed your corpse to his rabbits?");
+               alert("You have been captured by Radagast the Brown! You have failed your quest.");
                loser = loser +1;
              }
             }
@@ -55,22 +55,21 @@ function Game() {
   }
 
 
-
 document.getElementById("start-button").onclick = function() {
     currentGame = new Game();
+    currentGame.clearBoard();
     myPlayer = new Player();
     myWalls = new Walls();
     myEnemy = new Enemy();
     myPrize = new Prize();
-    currentGame.clearBoard();
     currentGame.player = myPlayer;
     currentGame.walls = myWalls;
     currentGame.enemy = myEnemy;
     currentGame.prize = myPrize;
     currentGame.walls.drawWalls();
     currentGame.prize.drawPrize();
-    currentGame.player.createPlayerImage();
     currentGame.enemy.createEnemyImage();
+    currentGame.player.createPlayerImage()
     currentGame.player.drawPlayer();
     currentGame.enemy.drawEnemy();
   };
@@ -86,6 +85,7 @@ else if (pause === true){
   var intervalThingEnemy;
   var intervalThingGame;
   var intervalThingWalls;
+
   document.onkeydown = function(event) {
     if (loser>=1){
       alert("You lost! Press Start to try again!")
@@ -127,6 +127,10 @@ else if (pause === true){
     
     }
   };
+
+$("start-button").click(function(){
+$("start-button").html("Click to Start");
+})
 
   // document.onkeydown = function(event) {
   //   clearInterval(blah); 
