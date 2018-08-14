@@ -29,7 +29,7 @@ function Player() {
     this.down=false;
     this.left=false;
     this.right=true;
-    this.speed = 1;
+    this.speed = 1.2;
     this.xArray = [ ];
     this.yArray = [ ];
     this.directionArray = [];

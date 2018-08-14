@@ -6,9 +6,32 @@
     flex-direction: row;
     background-color: mediumpurple;
 }
-
-
+h3{
+    padding: 0 5px;
+}
+p{
+ padding: 0 5px;
+}
 
 .logo {
-    width: 60px;
+    width:80px;
+}
+
+button{
+    color: mediumpurple;
+    background-color:black;
+    border-radius: 20px;
+    font-family: impact;
+    font-size: 20px;
+}
+.game-intro{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    align-content:space-around;
+}
+.instructions{
+font-size: 18px;
+font-family: impact;
 }
