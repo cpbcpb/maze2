@@ -17,6 +17,9 @@ function Game() {
   this.prize = {};
   console.log("This game exists");
 }
+// I need to make this game a bit smaller, so that it fits in the window a bit better.
+ctx.scale(.5,.5)
+
 Game.prototype.clearBoard = function() {
   ctx.clearRect(0, 0, 1200, 1200);
 };
