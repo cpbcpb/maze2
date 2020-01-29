@@ -1,8 +1,7 @@
 var myCanvas = document.getElementById("the-canvas");
 var ctx = myCanvas.getContext("2d");
 // I need to make this game a bit smaller, so that it fits in the window a bit better.
-ctx.scale(.5,.5)
-
+ctx.scale(0.5, 0.5)
 var currentGame;
 var playerImage;
 var tracksImage;
@@ -19,7 +18,7 @@ function Game() {
   this.wall = {};
   this.enemy = {};
   this.prize = {};
-  console.log("This game exists");
+  console.log("This game is on!");
 }
 
 
