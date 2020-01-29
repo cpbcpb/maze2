@@ -58,8 +58,35 @@ Game.prototype.youWin = function() {
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
 document.getElementById("start-button").onclick = function() {
   currentGame = new Game();
+  currentGame.clearBoard();
+  myPlayer = new Player();
+  myWalls = new Walls();
+  myEnemy = new Enemy();
+  myPrize = new Prize();
+  currentGame.player = myPlayer;
+  currentGame.walls = myWalls;
+  currentGame.enemy = myEnemy;
+  currentGame.prize = myPrize;
+  currentGame.walls.drawWalls();
+  currentGame.prize.drawPrize();
+  currentGame.enemy.createEnemyImage();
+  currentGame.player.createPlayerImage();
+  currentGame.player.drawPlayer();
+  currentGame.enemy.drawEnemy();
+    currentGame = new Game();
   currentGame.clearBoard();
   myPlayer = new Player();
   myWalls = new Walls();
