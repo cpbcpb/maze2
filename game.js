@@ -1,7 +1,7 @@
 var myCanvas = document.getElementById("the-canvas");
 var ctx = myCanvas.getContext("2d");
 // I need to make this game a bit smaller, so that it fits in the window a bit better.
-ctx.scale(0.5, 0.5)
+ctx.scale(0.75, 0.75)
 var currentGame;
 var playerImage;
 var tracksImage;
@@ -60,15 +60,6 @@ Game.prototype.youWin = function() {
 
 
 
-
-
-
-
-
-
-
-
-
 document.getElementById("start-button").onclick = function() {
   currentGame = new Game();
   currentGame.clearBoard();
@@ -86,6 +77,8 @@ document.getElementById("start-button").onclick = function() {
   currentGame.player.createPlayerImage();
   currentGame.player.drawPlayer();
   currentGame.enemy.drawEnemy();
+  
+  // doubling to see if will get rid of double click start glitch.  Todo: remove.
     currentGame = new Game();
   currentGame.clearBoard();
   myPlayer = new Player();
