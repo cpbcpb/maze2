@@ -27,9 +27,9 @@ button{
 .game-intro{
     display:flex;
     flex-direction:column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    align-content:space-around;
+    align-content:flex-start;
 }
 .instructions{
 font-size: 12px;
