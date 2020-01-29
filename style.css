@@ -35,3 +35,6 @@ button{
 font-size: 12px;
 font-family: arial;
 }
+ul {
+    list-style-type:none;
+    }
